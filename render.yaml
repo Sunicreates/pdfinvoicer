@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: pdf-dashboard-api
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    rootDir: apps/api
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Add other environment variables in Render dashboard
+    buildFilter:
+      paths:
+        - apps/api/**
+      ignoredPaths:
+        - apps/web/**
+        - docs/**
+        - "*.md"
